@@ -1,10 +1,10 @@
 import re
 import random
-from bottle import response
-from json import dumps
-from common.dictionary.dictionary import reflections
-from common.dictionary.dictionary import psychobabble
 import datetime
+from json import dumps
+from bottle import response
+from jannechatbotbackend.common.dictionary.dictionary import reflections
+from jannechatbotbackend.common.dictionary.dictionary import psychobabble
 
 optionMessage = [
     {"id": 1, "message": "Cari Property Di Bandung", "sender": "BOT"},
@@ -54,7 +54,7 @@ def store(message, type_message):
     while True:
         analyze_message = analyze(message)
         if type_message == "option":
-            # get data from elasticsearch
+            # get data from elastic search
             validate_message = get_data_from_es(analyze_message)
         else:
             validate_message = validate(analyze_message)
@@ -80,6 +80,6 @@ def validate(message):
         return rv
 
 
-# getDataFromElasticSearch retrive data from elasticsearch
+# getDataFromElasticSearch retrieve data from elastic search
 def get_data_from_es(message):
     return message
